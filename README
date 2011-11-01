@@ -1,0 +1,28 @@
+SF-Cms è un piccolo cms che avevo creato per il mio sito e gli ho apportato qualche
+modifica e ho publicato i sorgenti.
+
+Le caratteristiche di SF-Cms sono:
+
+Possibilità di creare pagine e articoli.
+Possibilità di modificare le voci del menù di navigazione.
+
+Questo è un cms molto piccolo che serve per persone a cui serve un sito facilmente
+configurabile e aggiornabile per publicare i propri lavori creare delle pagine personali
+e scrivere degli articoli.
+
+Configurare questo cms è semplicissimo infatti basta modificare il file config.php e inserire
+i propri dati e modificare il file .htaccess e .htpasswd contenuti nella cartella root.
+
+Nel file .htaccess dovete inserire il percorso completo al file .htpasswd
+del vostro sito, se non avete cambiato i nomi delle directory il percorso potrebbe essere
+ad esempio: /var/www/vostrosito/public_html/root
+
+Nel file .htpasswd dovete mettere l' username e la password per accedere al pannello
+di amministrazione ad esempio: username:password
+
+I dati default per accedere al pannello di amministrazione sono root:toor
+
+Per andare nel pannello di amministrazione basta andare in www.vostrosito.org/root
+
+Spero che questo script vi piaccia e per ulteriori informazioni, consigli o critiche 
+potete visitare il mio sito http://system-infet.blogspot.com per contattarmi.
