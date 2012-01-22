@@ -22,18 +22,13 @@ Testo:<br/>
 </center></body>
 </html>
 <?php
-$pag_id = date("dmyhms");
-$pag_nome = htmlspecialchars(htmlentities($_POST['pag_nome']));
-$pag_testo = htmlspecialchars(htmlentities($_POST['pag_testo']));
-if(isset($pag_nome) && ($pag_testo))
+$idPagina = date("dmyhms");
+$nomePagina = htmlspecialchars(htmlentities($_POST['pag_nome']));
+$testoPagina = htmlspecialchars(htmlentities($_POST['pag_testo']));
+if(isset($nomePagina) && ($testoPagina))
 {
-	$crea_pagina = fopen("../pagine/".$pag_id.".html", "w+");
-	fwrite($crea_pagina, "<h1>".$pag_nome."</h1><br>".$pag_testo."");
-	fclose($crea_pagina);
-	$filemenu = file_get_contents("../menu.html");
-	$aprimenu = fopen("../menu.html", "a");
-	fwrite($aprimenu, "<div class=\"element\"><a href=\"pagina.php?pag_id=".$pag_id.".html&link=".$pag_nome."\">".$pag_nome."</a></div>");
-	fclose($aprimenu);
+	file_put_contents("../db/pagine/".$idPagina.".html", "<h1>".$nomePagina."</h1><br>".$testoPagina."");
+	file_put_contents("../db/index.html", "<div class=\"element\"><a href=\"pagina.php?pag_id=".$idPagina."&seo=".$nomePagina."\">".$nomePagina."</a></div> <!-- <div class=\"element\"><a href=\"modifica_pagina.php?id=".$idPagina."\">Modifica ".$nomePagina."</a></div> -->", FILE_APPEND);
 }
 require_once("footer.php");
 ?>

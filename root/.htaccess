@@ -1,5 +1,8 @@
-AuthName "Restricted Area" 
-AuthType Basic 
-AuthUserFile /var/www/ad esempio/public_html/root/.htpasswd 
-AuthGroupFile /dev/null 
+AuthUserFile C:\Program Files (x86)\EasyPHP-5.3.8.1\www\cms/root/.htpasswd
+AuthGroupFile /dev/null
+AuthName "Password Protected Area"
+AuthType Basic
+
+<limit GET POST>
 require valid-user
+</limit>

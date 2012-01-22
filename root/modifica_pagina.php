@@ -10,11 +10,15 @@ http-equiv="content-type">
 </head>
 <body><center>
 <form method="POST">
-<h1>Modifica Menu</h1><br/>
+<h1>Modifica Pagina</h1><br/>
 <br/>
-<textarea cols="100" rows="50" name="mod_menu">
+<textarea cols="100" rows="50" name="mod_page">
 <?php
-print"".file_get_contents("../db/index.html")."";
+$idPagina = strip_tags($_GET['id']);
+if(isset($idPagina))
+{
+print"".file_get_contents("../db/pagine/".$idPagina.".html")."";
+}
 ?>
 </textarea><br/>
 <br/>
@@ -23,10 +27,10 @@ print"".file_get_contents("../db/index.html")."";
 </center></body>
 </html>
 <?php
-$editMenu = $_POST['mod_menu'];
-if(isset($editMenu))
+$editPage = htmlentities($_POST['mod_page']);
+if(isset($editPage))
 {
-	file_put_contents("../db/index.html", $editMenu);
+	file_put_contents("../db/pagine/".$idPagina.".html", $editPage);
 }
 require_once("footer.php");
 ?>

@@ -25,12 +25,13 @@ require_once("header.php");
     </center></body>
 </html>
 <?php
-$art_id = date("dmyhms");
-$art_data = date("d/m/y h:m:s");
-$art_titolo = htmlspecialchars(htmlentities($_POST['art_titolo']));
-$art_autore = htmlspecialchars(htmlentities($_POST['art_autore']));
-$art_testo = htmlspecialchars(htmlentities($_POST['art_testo']));
-$art_commenti = "<div id=\"disqus_thread\"></div>
+$idArticolo = date("dmyhms");
+$dataArticolo = date("h:m:s - d/m/y");
+$titoloArticolo = strip_tags($_POST['art_titolo']);
+$autoreArticolo = strip_tags($_POST['art_autore']);
+$testoArticolo = htmlentities($_POST['art_testo']);
+$commentiArticolo = "
+<div id=\"disqus_thread\"></div>
 <script type=\"text/javascript\">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = \'" . $userdisqus . "\'; // required: replace example with your forum shortname
@@ -44,18 +45,14 @@ $art_commenti = "<div id=\"disqus_thread\"></div>
 </script>
 <noscript>Please enable JavaScript to view the <a href=\"http://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>
 <a href=\"http://disqus.com\" class=\"dsq-brlink\">blog comments powered by <span class=\"logo-disqus\">Disqus</span></a>";
-if (isset($art_titolo) && ($art_autore) && ($art_testo)) {
-    $crea_articolo = fopen("../articoli/" . $art_id . ".html", "w+");
+if (isset($titoloArticolo) && ($autoreArticolo) && ($testoArticolo)) {
     if ($commenti == "on") {
-        fwrite($crea_articolo, "<h1>" . $art_titolo . "</h1><br>" . $art_testo . "<br><br><strong>Autore: </strong>" . $art_autore . "  <strong>Data: </strong>" . $art_data . "<br><strong>Commenti:</strong><br>" . $art_commenti . "");
+        file_put_contents("../db/articoli/" . $idArticolo . ".html", "<h1>" . $titoloArticolo . "</h1><br>" . $testoArticolo . "<br><br><strong>Autore: </strong>" . $autoreArticolo . "  <strong>Data: </strong>" . $dataArticolo . "<br><strong>Commenti:</strong><br>" . $commentiArticolo . "");
     } else {
-        fwrite($crea_articolo, "<h1>" . $art_titolo . "</h1><br>" . $art_testo . "<br><br><strong>Autore: </strong>" . $art_autore . "  <strong>Data: </strong>" . $art_data . "");
+        file_put_contents("../db/articoli/" . $idArticolo . ".html", "<h1>" . $titoloArticolo . "</h1><br>" . $testoArticolo . "<br><br><strong>Autore: </strong>" . $autoreArticolo . "  <strong>Data: </strong>" . $dataArticolo . "");
     }
-    fclose($crea_articolo);
-    $lista_articoli = file_get_contents("../articoli/lista_articoli.html");
-    $aprilista = fopen("../articoli/lista_articoli.html", "w");
-    fwrite($aprilista, "<ul><li><a href=\"blog.php?art_id=" . $art_id . ".html&link=" . $art_titolo . "\">[" . $art_data . "] - " . $art_titolo . "</a></li></ul>" . $lista_articoli . "");
-    fclose($aprilista);
+    $listaArticoli = file_get_contents("../db/articoli/index.html");
+    file_put_contents("../db/articoli/index.html", "<ul><li><a href=\"blog.php?art_id=" . $idArticolo . "&seo=".$titoloArticolo."\">[" . $dataArticolo . "] - " . $titoloArticolo . "</a></li></ul><!-- <ul><li><a href=\"modifica_articolo.php?id=" . $idArticolo . "\">Modifica " . $titoloArticolo . "</a></li></ul> -->" . $listaArticoli . "");
 }
 require_once("footer.php");
 ?>

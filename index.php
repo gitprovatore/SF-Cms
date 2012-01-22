@@ -1,5 +1,5 @@
 <?php
-require_once("header.php");
-require_once("pagine/index.html");
-require_once("footer.php");
+require_once("style/header.php");
+require_once("db/pagine/index.html");
+require_once("style/footer.php");
 ?>

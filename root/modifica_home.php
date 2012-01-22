@@ -14,8 +14,7 @@ http-equiv="content-type">
 <br/>
 <textarea cols="100" rows="50" name="mod_home">
 <?php
-$filehome = file_get_contents("../pagine/index.html");
-print"".$filehome."";
+print"".file_get_contents("../db/pagine/index.html")."";
 ?>
 </textarea><br/>
 <br/>
@@ -24,12 +23,10 @@ print"".$filehome."";
 </center></body>
 </html>
 <?php
-$mod_home = $_POST['mod_home'];
-if(isset($mod_home))
+$editHome = htmlentities($_POST['mod_home']);
+if(isset($editHome))
 {
-	$aprihome = fopen("../pagine/index.html", "w");
-	fwrite($aprihome, $mod_home);
-	fclose($aprihome);
+	file_put_contents("../db/pagine/index.html", $editHome);
 }
 require_once("footer.php");
 ?>
