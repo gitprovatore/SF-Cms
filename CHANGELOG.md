@@ -6,3 +6,9 @@
 - Aggiunto Installer.
 
 ----------
+
+**SF-Cms v2.0 STABLE (29 Gennaio 2012)**
+
+- CMS toltalmente riscritto.
+- Database su file XML.
+- Funzione per modificare pagine e articoli migliorata.
