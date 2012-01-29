@@ -3,14 +3,13 @@
 require_once("header.php");
 print"
 <p>
-<h1>Installazione SF-CmS</h1><br>
-<br>
-<form method=\"POST\" action=\"install.php\">
+<strong>Attenzione: Tutti i Campi vanno Riempiti!!!!</strong><br /><br />
+<form method=\"POST\" action=\"impostazioni.php\">
 Titolo Sito: <input name=\"titolosito\"><br>
 <br>
 Descrizione Sito: <input name=\"descrizionesito\"><br>
 <br>
-KeyWord Sito: <input name=\"keywordsito\"><br>&nbsp;Inserisci le keywords separate da una virgola.
+KeyWord Sito: <input name=\"keywordsito\"> Inserisci le keywords separate da una virgola.<br>
 <br>
 Testo Footer: <input name=\"testofooter\"><br>
 <br>
@@ -39,7 +38,7 @@ $confermaPassword = strip_tags($_POST['adminpassc']);
 $commentiArticoli = strip_tags($_POST['commenti']);
 $userDisqus = strip_tags($_POST['shortname']);
 if (isset($titoloSito) && ($descrizioneSito) && ($keywordSito) && ($testoFooter) && ($usernameAdmin) && ($passwordAdmin) && ($confermaPassword) && ($commentiArticoli) && ($userDisqus) && ($passwordAdmin == $confermaPassword)) {
-    file_put_contents("config.php", "<?php
+    file_put_contents("../config.php", "<?php
 
 require_once(\"firewall.php\");
 
@@ -50,7 +49,7 @@ require_once(\"firewall.php\");
 \$commentiArticoli = \"" . $commentiArticoli . "\"; // � possibile abilitare o disabilitare mettendo rispettivamente on oppure off i commenti e vi ricordo che per i commenti bisogna avere un accound disqus
 \$userDisqus = \"" . $userDisqus . "\"; // inserisci il tuo shortname di disqus per utilizzare i commenti
 ?>");
-    file_put_contents("root/.htaccess", "AuthUserFile " . getcwd() . "/root/.htpasswd
+    file_put_contents(".htaccess", "AuthUserFile " . getcwd() . "/.htpasswd
 AuthGroupFile /dev/null
 AuthName \"Password Protected Area\"
 AuthType Basic
@@ -58,7 +57,7 @@ AuthType Basic
 <limit GET POST>
 require valid-user
 </limit>");
-    file_put_contents("root/.htpasswd", "" . $usernameAdmin . ":" . crypt($confermaPassword) . "");
+    file_put_contents(".htpasswd", "" . $usernameAdmin . ":" . crypt($confermaPassword) . "");
 }
 require_once("footer.php");
 ?>
