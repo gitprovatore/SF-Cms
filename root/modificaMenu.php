@@ -6,7 +6,7 @@ print"
 <form method=\"POST\">
 <h1>Modifica Menu</h1><br/>
 <br/>
-<textarea cols=\"100\" rows=\"50\" name=\"editMenu\">
+<textarea cols=\"110\" rows=\"30\" name=\"editMenu\">
 " . file_get_contents("../db/menu.xml") . "
 </textarea><br/>
 <br/>

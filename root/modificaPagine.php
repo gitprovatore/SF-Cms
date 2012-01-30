@@ -19,7 +19,7 @@ Nome:<br/>
 <input name=\"nomePagina\" value=\"" . $nomeMod . "\"><br/>
 Testo:<br/>
 <br/>
-<textarea cols=\"30\" rows=\"15\" name=\"testoPagina\">" . $testoMod . "</textarea><br/>
+<textarea cols=\"110\" rows=\"30\" name=\"testoPagina\">" . $testoMod . "</textarea><br/>
 <br/>
 <input value=\"Modifica Pagina\" type=\"submit\"><br/>
 </form>

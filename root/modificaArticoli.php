@@ -24,7 +24,7 @@ print"
             <input name=\"autoreArticolo\" value=\"" . $autoreMod . "\"><br/>
             Text:<br/>
             <br/>
-            <textarea cols=\"30\" rows=\"15\" name=\"testoArticolo\">" . $testoMod . "</textarea><br/>
+            <textarea cols=\"110\" rows=\"30\" name=\"testoArticolo\">" . $testoMod . "</textarea><br/>
             <br/>
             <input value=\"Modifica Articolo\" type=\"submit\"><br/>
         </form>

@@ -12,3 +12,12 @@
 - CMS toltalmente riscritto.
 - Database su file XML.
 - Funzione per modificare pagine e articoli migliorata.
+
+----------
+
+**SF-Cms v2.1 STABLE (30 Gennaio 2012)**
+
+- Sistemati alcuni bug nel codice.
+- Aggiunto editor TinyMice.
+- Aggiunta funzione per inserire link esterni al menu.
+- Sistemata funzione dell aggiornamento del menu.

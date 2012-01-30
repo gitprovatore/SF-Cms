@@ -8,7 +8,7 @@ Le caratteristiche di SF-CmS sono:
 
 - Possibilità di inserire e modificare articoli.
 - Possibilità di inserire e modificare pagine.
-- Possibilità di modificare il menù.
+- Possibilità di modificare il menu.
 - Possibilità di la home page.
 - Possibilità di modificare le impostazioni del sito.
 
@@ -20,6 +20,10 @@ Le caratteristiche di SF-CmS sono:
 - Eliminate il file install.php
 - Fate il chmod del file config.php 664.
 - Andate nel pannello admin che si trova nella cartella root, quindi www.vostrosito.it/root/ e potete cominciare a modificare la home page e a scrivere articoli e inserire pagine.
+
+## Informazioni sul funzionamento del menu ##
+
+Il menu è scritto sul file ./db/menu.xml e contiene i link alle pagine che avete creato però se voi volete aggiungere un link ad una pagina o ad un sito potete farlo basta scrivere il link fra i tag `<linkElemento></linkElemento>` e non dimenticare: http, https, ftp o ftps nel link perche allora il cms cercherà la pagina nel suo database xml.
 
 Per modificare l' aspetto del cms dovete modificare i file:
 

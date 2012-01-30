@@ -9,7 +9,7 @@ Nome:<br/>
 <input name=\"nomePagina\"><br/>
 Testo:<br/>
 <br/>
-<textarea cols=\"30\" rows=\"15\" name=\"testoPagina\"></textarea><br/>
+<textarea cols=\"110\" rows=\"30\" name=\"testoPagina\"></textarea><br/>
 <br/>
 <input value=\"Inserisci Pagina\" type=\"submit\"><br/>
 </form>

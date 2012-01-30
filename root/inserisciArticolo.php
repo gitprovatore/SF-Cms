@@ -12,7 +12,7 @@ print"
             <input name=\"autoreArticolo\"><br/>
             Text:<br/>
             <br/>
-            <textarea cols=\"30\" rows=\"15\" name=\"testoArticolo\"></textarea><br/>
+            <textarea cols=\"110\" rows=\"30\" name=\"testoArticolo\"></textarea><br/>
             <br/>
             <input value=\"Inserisci Articolo\" type=\"submit\"><br/>
         </form>

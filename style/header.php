@@ -25,7 +25,14 @@ print"
 ";
 $loadMenu = simplexml_load_file("db/menu.xml");
 foreach ($loadMenu->elementoMenu as $menuItem) {
+if((preg_match("/http/i", $menuItem->linkElemento)) OR (preg_match("/https/i", $menuItem->linkElemento)) OR (preg_match("/ftp/i", $menuItem->linkElemento)) OR (preg_match("/ftps/i", $menuItem->linkElemento)))
+{
+print"<div class=\"element\"><a href=\"" . $menuItem->linkElemento . "\">" . $menuItem->nomeElemento . "</a></div>";
+}
+else
+{
     print"<div class=\"element\"><a href=\"pagina.php?pageID=" . $menuItem->linkElemento . "&seo=" . $menuItem->nomeElemento . "\">" . $menuItem->nomeElemento . "</a></div>";
+}
 }
 print"</div>";
 print"<div id=\"body\">";

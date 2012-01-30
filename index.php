@@ -1,6 +1,6 @@
 <?php
 
 require_once("style/header.php");
-require_once("db/home.html");
+print"".html_entity_decode(file_get_contents("db/home.html"))."";
 require_once("style/footer.php");
 ?>

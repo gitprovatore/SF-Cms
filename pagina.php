@@ -6,7 +6,7 @@ if (isset($pageID)) {
     $getDb = simplexml_load_file("db/pagine.xml");
     foreach ($getDb->pagina as $page) {
         if ($pageID == $page->idPagina) {
-            print"" . $page->testoPagina . "";
+            print"" . html_entity_decode($page->testoPagina) . "";
         }
     }
 }

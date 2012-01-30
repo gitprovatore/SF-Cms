@@ -1,16 +1,15 @@
 <?php
 
-require_once("header.php");
+require_once("style/header.php");
 print"
 <p>
 <h1>Installazione SF-CmS</h1><br>
-<br>
 <form method=\"POST\" action=\"install.php\">
 Titolo Sito: <input name=\"titolosito\"><br>
 <br>
 Descrizione Sito: <input name=\"descrizionesito\"><br>
 <br>
-KeyWord Sito: <input name=\"keywordsito\"><br>&nbsp;Inserisci le keywords separate da una virgola.
+KeyWord Sito: <input name=\"keywordsito\">&nbsp;Inserisci le keywords separate da una virgola.<br>
 <br>
 Testo Footer: <input name=\"testofooter\"><br>
 <br>
@@ -25,7 +24,7 @@ Commenti:&nbsp;<input name=\"commenti\">
 (attenzione inserire on/off a caratteri minuscoli).<br>
 <br>
 Disqus ShortName:&nbsp;<input name=\"shortname\"> Se
-hai disabilitato i commenti scrivi empty.<br>
+hai disabilitato i commenti scrivi empty.<br><br>
 <input type=\"submit\" value=\"Installa\" />
 </p>
 ";
@@ -60,5 +59,5 @@ require valid-user
 </limit>");
     file_put_contents("root/.htpasswd", "" . $usernameAdmin . ":" . crypt($confermaPassword) . "");
 }
-require_once("footer.php");
+require_once("style/footer.php");
 ?>

@@ -14,6 +14,19 @@ print"
 		<meta name=\"DESCRIPTION\" content=\"" . $descrizioneSito . "\" />
 		<meta name=\"KEYWORDS\" content=\"" . $keywordSito . "\" />
         <link rel=\"stylesheet\" type=\"text/css\" href=\"../style/style.css\">
+		";
+		if(!preg_match("/\/modificaMenu\.php/i", $_SERVER['REQUEST_URI']))
+		{
+		print"<script type=\"text/javascript\" src=\"../external/tinymce/jscripts/tiny_mce/tiny_mce.js\" ></script >
+<script type=\"text/javascript\" >
+tinyMCE.init({
+        mode : \"textareas\",
+        theme : \"advanced\"
+});
+</script >";
+		}
+		
+		print"
     </head>
     <body>
         <div id=\"menu\">

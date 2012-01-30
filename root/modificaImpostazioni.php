@@ -4,7 +4,7 @@ require_once("header.php");
 print"
 <p>
 <strong>Attenzione: Tutti i Campi vanno Riempiti!!!!</strong><br /><br />
-<form method=\"POST\" action=\"impostazioni.php\">
+<form method=\"POST\" action=\"modificaImpostazioni.php\">
 Titolo Sito: <input name=\"titolosito\"><br>
 <br>
 Descrizione Sito: <input name=\"descrizionesito\"><br>
