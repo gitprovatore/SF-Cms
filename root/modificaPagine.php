@@ -32,6 +32,9 @@ if (isset($nomePagina) && ($testoPagina)) {
     $parseDb = str_replace("<nomePagina>" . $nomeMod . "</nomePagina>", "<nomePagina>" . $nomePagina . "</nomePagina>", $modDb);
     $dbParsed = str_replace("<testoPagina>" . $testoMod . "</testoPagina>", "<testoPagina>" . $testoPagina . "</testoPagina>", $parseDb);
     file_put_contents("../db/pagine.xml", $dbParsed);
+    $modMenu = file_get_contents("../db/menu.xml");
+	$parsedMenu = str_replace($nomeMod, $nomePagina, $modMenu);
+	file_put_contents("../db/menu.xml", $parsedMenu);
 }
 require_once("footer.php");
 ?>
