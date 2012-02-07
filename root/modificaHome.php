@@ -1,6 +1,8 @@
 <?php
-
-require_once("header.php");
+require_once("../config.php");
+require_once("security.php");
+require_once("../style/theme.php");
+adminpageOpen();
 print"
 <center>
 <form method=\"POST\">
@@ -18,5 +20,5 @@ $editHome = htmlentities($_POST['editHome']);
 if (isset($editHome)) {
     file_put_contents("../db/home.html", $editHome);
 }
-require_once("footer.php");
+adminpageClose();
 ?>

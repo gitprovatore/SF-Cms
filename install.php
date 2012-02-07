@@ -1,17 +1,27 @@
 <?php
-
-require_once("style/header.php");
 print"
+<html>
+<head>
+    <meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">
+    <title>Installazione SF-CmS</title>
+        <link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\">
+    </head>
+</head>
+<body>
+<ul>
+<br>
 <p>
 <h1>Installazione SF-CmS</h1><br>
 <form method=\"POST\" action=\"install.php\">
 Titolo Sito: <input name=\"titolosito\"><br>
 <br>
+URL Sito: <input name=\"urlsito\">&nbsp; Scrivi l' url del tuo sito ad es. http://www.tuosito.it/ non dimenticare lo slash finale e se SF-CmS si trova in una sottodirectory inserisci anche quella ad es. http://www.tuosito.it/sottodir/<br>
+<br>
 Descrizione Sito: <input name=\"descrizionesito\"><br>
 <br>
 KeyWord Sito: <input name=\"keywordsito\">&nbsp;Inserisci le keywords separate da una virgola.<br>
 <br>
-Testo Footer: <input name=\"testofooter\"><br>
+Testo Footer:<br><br><textarea cols=\"40\" rows=\"5\" name=\"testofooter\"></textarea><br>
 <br>
 Admin UserName: <input name=\"adminuser\"><br>
 <br>
@@ -26,9 +36,13 @@ Commenti:&nbsp;<input name=\"commenti\">
 Disqus ShortName:&nbsp;<input name=\"shortname\"> Se
 hai disabilitato i commenti scrivi empty.<br><br>
 <input type=\"submit\" value=\"Installa\" />
+</form>
 </p>
+</ul>
+</body></html>
 ";
 $titoloSito = strip_tags($_POST['titolosito']);
+$urlSito = strip_tags($_POST['urlsito']);
 $descrizioneSito = strip_tags($_POST['descrizionesito']);
 $keywordSito = strip_tags($_POST['keywordsito']);
 $testoFooter = htmlentities($_POST['testofooter']);
@@ -37,27 +51,22 @@ $passwordAdmin = strip_tags($_POST['adminpass']);
 $confermaPassword = strip_tags($_POST['adminpassc']);
 $commentiArticoli = strip_tags($_POST['commenti']);
 $userDisqus = strip_tags($_POST['shortname']);
-if (isset($titoloSito) && ($descrizioneSito) && ($keywordSito) && ($testoFooter) && ($usernameAdmin) && ($passwordAdmin) && ($confermaPassword) && ($commentiArticoli) && ($userDisqus) && ($passwordAdmin == $confermaPassword)) {
-    file_put_contents("config.php", "<?php
+$passwordHash = hash("sha512", $passwordAdmin);
+if (isset($titoloSito) && ($urlSito) && ($descrizioneSito) && ($keywordSito) && ($testoFooter) && ($usernameAdmin) && ($passwordAdmin) && ($confermaPassword) && ($commentiArticoli) && ($userDisqus) && ($passwordAdmin == $confermaPassword)) {
+    file_put_contents("config.php", "
+    <?php
+    require_once(\"firewall.php\");
+	define(\"TITOLO_SITO\", \"".$titoloSito."\");
+	define(\"DESCRIZIONE_SITO\", \"".$descrizioneSito."\");
+	define(\"KEYWORDS_SITO\", \"".$keywordSito."\");
+	define(\"TESTO_FOOTER\", \"".$testoFooter."\");
+	define(\"USERNAME_ROOT\", \"".$usernameAdmin."\");
+	define(\"PASSWORD_ROOT\", \"".$passwordHash."\");
+	define(\"COMMENTI_BLOG\", \"".$commentiArticoli."\");
+	define(\"USER_DISQUS\", \"".$userDisqus."\");
+	define(\"URL_SITO\", \"".$urlSito."\");
+	?>
+    ");
 
-require_once(\"firewall.php\");
-
-\$titoloSito = \"" . $titoloSito . "\"; // inserisci il tutolo del sito
-\$descrizioneSito = \"" . $descrizioneSito . "\";
-\$keywordSito = \"" . $keywordSito . "\";
-\$testoFooter = \"" . $testoFooter . "\"; // inserisci il testo che verr� visualizzato nel footer
-\$commentiArticoli = \"" . $commentiArticoli . "\"; // � possibile abilitare o disabilitare mettendo rispettivamente on oppure off i commenti e vi ricordo che per i commenti bisogna avere un accound disqus
-\$userDisqus = \"" . $userDisqus . "\"; // inserisci il tuo shortname di disqus per utilizzare i commenti
-?>");
-    file_put_contents("root/.htaccess", "AuthUserFile " . getcwd() . "/root/.htpasswd
-AuthGroupFile /dev/null
-AuthName \"Password Protected Area\"
-AuthType Basic
-
-<limit GET POST>
-require valid-user
-</limit>");
-    file_put_contents("root/.htpasswd", "" . $usernameAdmin . ":" . crypt($confermaPassword) . "");
 }
-require_once("style/footer.php");
 ?>

@@ -1,6 +1,8 @@
 <?php
-
-require_once("header.php");
+require_once("../config.php");
+require_once("security.php");
+require_once("../style/theme.php");
+adminpageOpen();
 print"
 <center>
 <form method=\"POST\">
@@ -26,5 +28,5 @@ if (isset($nomePagina) && ($testoPagina)) {
     $menuParsed = str_replace("</menuSito>", "", $getMenu);
     file_put_contents("../db/menu.xml", "" . $menuParsed . " <elementoMenu><nomeElemento>" . $nomePagina . "</nomeElemento><linkElemento>" . $idPagina . "</linkElemento></elementoMenu></menuSito>");
 }
-require_once("footer.php");
+adminpageClose();
 ?>

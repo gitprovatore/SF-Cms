@@ -1,11 +1,12 @@
 <?php
-
-require_once("style/header.php");
+require_once("style/theme.php");
+require_once("config.php");
+pageOpen();
 $articleID = strip_tags($_GET['articleID']);
 if (empty($_GET['articleID'])) {
     $getDb = simplexml_load_file("db/articoli.xml");
     foreach ($getDb->articolo as $article) {
-        print"<ul><li><a href=\"blog.php?articleID=" . $article->idArticolo . "&seo=" . $article->titoloArticolo . "\">[" . $article->dataArticolo . "] - " . $article->titoloArticolo . "</a></li></ul>";
+        print"<ul><li><a href=\"blog.php?articleID=" . $article->idArticolo . "&SEO=" . $article->titoloArticolo . "\">[" . $article->dataArticolo . "] - " . $article->titoloArticolo . "</a></li></ul>";
     }
 } else {
     $getDb = simplexml_load_file("db/articoli.xml");
@@ -17,13 +18,13 @@ if (empty($_GET['articleID'])) {
 " . $article->testoArticolo . "
 <br>
 <br>
-<strong>Autore:</strong>" . $article->autoreArticolo . " <strong>Data:</strong>" . $article->dataArticolo . "<br><br>
+<strong>Autore:</strong>" . $article->autoreArticolo . "&nbsp;&nbsp;<strong>Data:</strong>" . $article->dataArticolo . "<br><br>
 <strong>Commenti:</strong>
 <br>
-" . $article->commentiArticolo . "
+" . html_entity_decode($article->commentiArticolo) . "
 ";
         }
     }
 }
-require_once("style/footer.php");
+pageClose();
 ?>

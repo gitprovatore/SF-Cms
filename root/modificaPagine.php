@@ -1,6 +1,8 @@
 <?php
-
-require_once("header.php");
+require_once("../config.php");
+require_once("security.php");
+require_once("../style/theme.php");
+adminpageOpen();
 $id = strip_tags($_GET['id']);
 if (isset($id)) {
     $getDb = simplexml_load_file("../db/pagine.xml");
@@ -36,5 +38,5 @@ if (isset($nomePagina) && ($testoPagina)) {
 	$parsedMenu = str_replace($nomeMod, $nomePagina, $modMenu);
 	file_put_contents("../db/menu.xml", $parsedMenu);
 }
-require_once("footer.php");
+adminpageClose();
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 foreach ($_GET as $getRequest) {
-    if (($getRequest != $_GET['seo']))
+    if (($getRequest != $_GET['SEO']))
 	{
 	continue;
 	}

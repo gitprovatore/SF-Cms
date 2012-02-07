@@ -1,6 +1,8 @@
 <?php
-
-require_once("header.php");
+require_once("../config.php");
+require_once("security.php");
+require_once("../style/theme.php");
+adminpageOpen();
 $id = strip_tags($_GET['id']);
 if (isset($id)) {
     $getDb = simplexml_load_file("../db/articoli.xml");
@@ -43,5 +45,5 @@ if (isset($titoloArticolo) && ($autoreArticolo) && ($testoArticolo)) {
     $dbParsed = str_replace("<testoArticolo>" . $testoMod . "</testoArticolo>", "<testoArticolo>" . $testoArticolo . "</testoArticolo>", $parseDb2);
     file_put_contents("../db/articoli.xml", $dbParsed);
 }
-require_once("footer.php");
+adminpageClose();
 ?>

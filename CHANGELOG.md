@@ -21,3 +21,13 @@
 - Aggiunto editor TinyMice.
 - Aggiunta funzione per inserire link esterni al menu.
 - Sistemata funzione dell aggiornamento del menu.
+
+----------
+
+**SF-Cms v3.0 STABLE (07 Febbraio 2012)**
+
+- Tolto editor TinyMice.
+- Molti miglioramenti al sorgente.
+- Migliorata la gestione dello stile.
+- Nuovo metodo di login a sessioni con password cifrata in SHA512 bit.
+- Migliorato sistema per il SEO.

@@ -1,6 +1,7 @@
 <?php
-
-require_once("style/header.php");
+require_once("style/theme.php");
+require_once("config.php");
+pageOpen();
 $pageID = strip_tags($_GET['pageID']);
 if (isset($pageID)) {
     $getDb = simplexml_load_file("db/pagine.xml");
@@ -10,5 +11,5 @@ if (isset($pageID)) {
         }
     }
 }
-require_once("style/footer.php");
+pageClose();
 ?>

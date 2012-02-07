@@ -1,6 +1,8 @@
 <?php
-
-require_once("header.php");
+require_once("../config.php");
+require_once("security.php");
+require_once("../style/theme.php");
+adminpageOpen();
 $dbArticoli = simplexml_load_file("../db/articoli.xml");
 $dbPagine = simplexml_load_file("../db/pagine.xml");
 print"<h1>Modifica Articoli</h1><br />";
@@ -11,5 +13,5 @@ print"<br /><h1>Modifica Pagina</h1><br />";
 foreach ($dbPagine->pagina as $modPagina) {
     print"<ul><li><a href=\"modificaPagine.php?id=" . $modPagina->idPagina . "\">Modifica " . $modPagina->nomePagina . "</a></li></ul>";
 }
-require_once("footer.php");
+adminpageClose();
 ?>

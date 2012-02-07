@@ -1,6 +1,8 @@
 <?php
-
-require_once("header.php");
+require_once("../config.php");
+require_once("security.php");
+require_once("../style/theme.php");
+adminpageOpen();
 print"
 <center>
 <form method=\"POST\">
@@ -14,9 +16,9 @@ print"
 </form>
 </center>
 ";
-$editMenu = $_POST['editMenu'];
+$editMenu = stripslashes($_POST['editMenu']);
 if (isset($editMenu)) {
     file_put_contents("../db/menu.xml", $editMenu);
 }
-require_once("footer.php");
+adminpageClose();
 ?>

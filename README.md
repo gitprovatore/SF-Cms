@@ -27,8 +27,7 @@ Il menu è scritto sul file ./db/menu.xml e contiene i link alle pagine che avet
 
 Per modificare l' aspetto del cms dovete modificare i file:
 
-- style/header.php
-- style/footer.php
+- style/theme.php
 - style/style.css
 
 Essendo scarso nelle css usato le css di minilol il cms di meh, spero che non si arrabbi xD.
