@@ -17,9 +17,14 @@ function htmlHead()
 	print"
 	</title>
 	<meta name=\"DESCRIPTION\" content=\"".DESCRIZIONE_SITO."\" />
-	<meta name=\"KEYWORDS\" content=\"".KEYWORDS_SITO."\" />
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"".URL_SITO."style/style.css\">
-    </head>
+	<meta name=\"KEYWORDS\" content=\"".KEYWORDS_SITO."";
+	if (isset($_GET['SEO']))
+	{
+		print", ".strip_tags($_GET['SEO'])."";
+	}
+	print"\" />
+    	<link rel=\"stylesheet\" type=\"text/css\" href=\"".URL_SITO."style/style.css\">
+    	</head>
 	";
 }
 
