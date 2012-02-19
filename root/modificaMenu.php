@@ -17,7 +17,8 @@ print"
 </center>
 ";
 $editMenu = stripslashes($_POST['editMenu']);
-if (isset($editMenu)) {
+if (isset($editMenu))
+{
     file_put_contents("../db/menu.xml", $editMenu);
 }
 adminpageClose();

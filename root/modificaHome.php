@@ -17,7 +17,8 @@ print"
 </center>
 ";
 $editHome = htmlentities($_POST['editHome']);
-if (isset($editHome)) {
+if (isset($editHome))
+{
     file_put_contents("../db/home.html", $editHome);
 }
 adminpageClose();

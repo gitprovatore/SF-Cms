@@ -41,13 +41,17 @@ $commentiArticolo = htmlentities("
 <noscript>Please enable JavaScript to view the <a href=\"http://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>
 <a href=\"http://disqus.com\" class=\"dsq-brlink\">blog comments powered by <span class=\"logo-disqus\">Disqus</span></a>
 ");
-if (isset($titoloArticolo) && ($autoreArticolo) && ($testoArticolo)) {
+if (isset($titoloArticolo) && ($autoreArticolo) && ($testoArticolo))
+{
     $getDb = file_get_contents("../db/articoli.xml");
     $parseDb = str_replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "", $getDb);
     $dbParsed = str_replace("<articoliBlog>", "", $parseDb);
-    if (COMMENTI_BLOG == "on") {
+    if (COMMENTI_BLOG == "on")
+    {
         file_put_contents("../db/articoli.xml", "<?xml version=\"1.0\" encoding=\"UTF-8\"?><articoliBlog><articolo><idArticolo>" . $idArticolo . "</idArticolo><titoloArticolo>" . $titoloArticolo . "</titoloArticolo><autoreArticolo>" . $autoreArticolo . "</autoreArticolo><dataArticolo>" . $dataArticolo . "</dataArticolo><testoArticolo>" . $testoArticolo . "</testoArticolo><commentiArticolo>" . $commentiArticolo . "</commentiArticolo></articolo>" . $dbParsed . "");
-    } else {
+    }
+    else
+    {
         file_put_contents("../db/articoli.xml", "<?xml version=\"1.0\" encoding=\"UTF-8\"?><articoliBlog><articolo><idArticolo>" . $idArticolo . "</idArticolo><titoloArticolo>" . $titoloArticolo . "</titoloArticolo><autoreArticolo>" . $autoreArticolo . "</autoreArticolo><dataArticolo>" . $dataArticolo . "</dataArticolo><testoArticolo>" . $testoArticolo . "</testoArticolo></articolo>" . $dbParsed . "");
     }
 }

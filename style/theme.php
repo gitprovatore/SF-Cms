@@ -20,7 +20,16 @@ function htmlHead()
 	<meta name=\"KEYWORDS\" content=\"".KEYWORDS_SITO."";
 	if (isset($_GET['SEO']))
 	{
+<<<<<<< HEAD
 		print", ".strip_tags($_GET['SEO'])."";
+=======
+		$seoKeywords = strip_tags($_GET['SEO']);
+		$keywordsGen = explode(" ", $seoKeywords);
+		foreach($keywordsGen as $key)
+		{
+			print", ".$key."";
+		}
+>>>>>>> Nuova versione v3.1 vari miglioramenti e fix :D:D
 	}
 	print"\" />
     	<link rel=\"stylesheet\" type=\"text/css\" href=\"".URL_SITO."style/style.css\">
@@ -98,7 +107,7 @@ function htmlFooter()
 {
 	print"
 	<div id=\"credits\">
-	".TESTO_FOOTER." - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
+	".TESTO_FOOTER." - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v3.1</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
 	</div>
 	";
 }
@@ -139,5 +148,26 @@ function adminpageClose()
 	htmlcloseContent();
 	htmlFooter();
 	htmlcloseBody();
+}
+
+function viewPage($pageText)
+{
+	print"<br>".html_entity_decode($pageText)."<br>";
+}
+
+function viewArticlelist($id, $title, $date)
+{
+	print"<ul><li><a href=\"blog.php?articleID=".$id."&SEO=".$title."\">[".$date."] - ".$title."</a></li></ul>";
+}
+
+function viewArticle($title, $text, $author, $data, $comment)
+{
+	print"
+	<h1>".$title."</h1>
+	".html_entity_decode($text)."<br><br>
+	<strong>Autore:</strong>".$author."&nbsp;&nbsp;<strong>Data:</strong>".$data."<br><br>
+	<strong>Commenti:</strong><br>
+	".html_entity_decode($comment)."
+	";
 }
 ?>

@@ -43,7 +43,8 @@ $confermaPassword = strip_tags($_POST['adminpassc']);
 $commentiArticoli = strip_tags($_POST['commenti']);
 $userDisqus = strip_tags($_POST['shortname']);
 $passwordHash = hash("sha512", $passwordAdmin);
-if (isset($titoloSito) && ($urlSito) && ($descrizioneSito) && ($keywordSito) && ($testoFooter) && ($usernameAdmin) && ($passwordAdmin) && ($confermaPassword) && ($commentiArticoli) && ($userDisqus) && ($passwordAdmin == $confermaPassword)) {
+if (isset($titoloSito) && ($urlSito) && ($descrizioneSito) && ($keywordSito) && ($testoFooter) && ($usernameAdmin) && ($passwordAdmin) && ($confermaPassword) && ($commentiArticoli) && ($userDisqus) && ($passwordAdmin == $confermaPassword))
+{
     file_put_contents("../config.php", "
     <?php
     require_once(\"firewall.php\");

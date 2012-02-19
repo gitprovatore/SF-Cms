@@ -20,7 +20,8 @@ Testo:<br/>
 $idPagina = date("dmyhms");
 $nomePagina = htmlspecialchars(htmlentities($_POST['nomePagina']));
 $testoPagina = htmlspecialchars(htmlentities($_POST['testoPagina']));
-if (isset($nomePagina) && ($testoPagina)) {
+if (isset($nomePagina) && ($testoPagina))
+{
     $getDb = file_get_contents("../db/pagine.xml");
     $dbParsed = str_replace("</pagineSito>", "", $getDb);
     file_put_contents("../db/pagine.xml", "" . $dbParsed . "<pagina><idPagina>" . $idPagina . "</idPagina><nomePagina>" . $nomePagina . "</nomePagina><testoPagina>" . $testoPagina . "</testoPagina></pagina></pagineSito>");

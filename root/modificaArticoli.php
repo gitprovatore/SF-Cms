@@ -4,10 +4,13 @@ require_once("security.php");
 require_once("../style/theme.php");
 adminpageOpen();
 $id = strip_tags($_GET['id']);
-if (isset($id)) {
+if (isset($id))
+{
     $getDb = simplexml_load_file("../db/articoli.xml");
-    foreach ($getDb->articolo as $modArticolo) {
-        if ($id == $modArticolo->idArticolo) {
+    foreach ($getDb->articolo as $modArticolo)
+    {
+        if ($id == $modArticolo->idArticolo)
+        {
             $titoloMod = $modArticolo->titoloArticolo;
             $autoreMod = $modArticolo->autoreArticolo;
             $testoMod = $modArticolo->testoArticolo;
@@ -37,7 +40,8 @@ $dataArticolo = date("h:m:s - d/m/y");
 $titoloArticolo = strip_tags($_POST['titoloArticolo']);
 $autoreArticolo = strip_tags($_POST['autoreArticolo']);
 $testoArticolo = htmlentities($_POST['testoArticolo']);
-if (isset($titoloArticolo) && ($autoreArticolo) && ($testoArticolo)) {
+if (isset($titoloArticolo) && ($autoreArticolo) && ($testoArticolo))
+{
     $modDb = file_get_contents("../db/articoli.xml");
     $parseDb = str_replace("<titoloArticolo>" . $titoloMod . "</titoloArticolo>", "<titoloArticolo>" . $titoloArticolo . "</titoloArticolo>", $modDb);
     $parseDb1 = str_replace("<autoreArticolo>" . $autoreMod . "</autoreArticolo>", "<autoreArticolo>" . $autoreArticolo . "</autoreArticolo>", $parseDb);

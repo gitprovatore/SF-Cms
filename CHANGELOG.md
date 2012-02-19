@@ -31,3 +31,11 @@
 - Migliorata la gestione dello stile.
 - Nuovo metodo di login a sessioni con password cifrata in SHA512 bit.
 - Migliorato sistema per il SEO.
+
+----------
+
+**SF-Cms v3.1 STABLE (19 Febbraio 2012)**
+
+- Miglioramento nel sistema di gestione dello stile.
+- Migliorato sistema delle keywords per gli articoli e le pagine.
+- Vari Fix.

@@ -4,10 +4,13 @@ require_once("security.php");
 require_once("../style/theme.php");
 adminpageOpen();
 $id = strip_tags($_GET['id']);
-if (isset($id)) {
+if (isset($id))
+{
     $getDb = simplexml_load_file("../db/pagine.xml");
-    foreach ($getDb->pagina as $modPagina) {
-        if ($id == $modPagina->idPagina) {
+    foreach ($getDb->pagina as $modPagina)
+    {
+        if ($id == $modPagina->idPagina)
+        {
             $nomeMod = $modPagina->nomePagina;
             $testoMod = $modPagina->testoPagina;
         }
@@ -29,7 +32,8 @@ Testo:<br/>
 ";
 $nomePagina = htmlspecialchars(htmlentities($_POST['nomePagina']));
 $testoPagina = htmlspecialchars(htmlentities($_POST['testoPagina']));
-if (isset($nomePagina) && ($testoPagina)) {
+if (isset($nomePagina) && ($testoPagina))
+{
     $modDb = file_get_contents("../db/pagine.xml");
     $parseDb = str_replace("<nomePagina>" . $nomeMod . "</nomePagina>", "<nomePagina>" . $nomePagina . "</nomePagina>", $modDb);
     $dbParsed = str_replace("<testoPagina>" . $testoMod . "</testoPagina>", "<testoPagina>" . $testoPagina . "</testoPagina>", $parseDb);

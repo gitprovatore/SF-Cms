@@ -1,9 +1,10 @@
 <?php
 
-foreach ($_GET as $getRequest) {
+foreach ($_GET as $getRequest)
+{
     if (($getRequest != $_GET['SEO']))
 	{
-	continue;
+			continue;
 	}
 	elseif((@preg_match("/[:alpha:]/i", $getRequest)) OR (@preg_match("/[:punct:]/i", $getRequest)))
 	{
