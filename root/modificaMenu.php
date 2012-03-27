@@ -1,7 +1,6 @@
 <?php
 require_once("../config.php");
 require_once("security.php");
-require_once("../style/theme.php");
 adminpageOpen();
 print"
 <center>
@@ -9,17 +8,18 @@ print"
 <h1>Modifica Menu</h1><br/>
 <br/>
 <textarea cols=\"110\" rows=\"30\" name=\"editMenu\">
-" . file_get_contents("../db/menu.xml") . "
+" . file_get_contents("".FULL_PATH."database/liste/menuSito.html") . "
 </textarea><br/>
 <br/>
-<input value=\"Modifica Menu\" type=\"submit\"><br/>
+<input value=\"Modifica Home\" type=\"submit\"><br/>
 </form>
 </center>
 ";
-$editMenu = stripslashes($_POST['editMenu']);
+$editMenu = htmlentities($_POST['editMenu']);
 if (isset($editMenu))
 {
-    file_put_contents("../db/menu.xml", $editMenu);
+    file_put_contents("".FULL_PATH."database/liste/menuSito.html", $editMenu);
+    print"<br><center><h1>MENU MODIFICATO CON SUCCESSO!!!</h1></center>";
 }
 adminpageClose();
 ?>

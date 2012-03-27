@@ -54,18 +54,19 @@ $userDisqus = strip_tags($_POST['shortname']);
 $passwordHash = hash("sha512", $passwordAdmin);
 if (isset($titoloSito) && ($urlSito) && ($descrizioneSito) && ($keywordSito) && ($testoFooter) && ($usernameAdmin) && ($passwordAdmin) && ($confermaPassword) && ($commentiArticoli) && ($userDisqus) && ($passwordAdmin == $confermaPassword)) {
     file_put_contents("config.php", "
-    <?php
-    require_once(\"firewall.php\");
-	define(\"TITOLO_SITO\", \"".$titoloSito."\");
-	define(\"DESCRIZIONE_SITO\", \"".$descrizioneSito."\");
-	define(\"KEYWORDS_SITO\", \"".$keywordSito."\");
-	define(\"TESTO_FOOTER\", \"".$testoFooter."\");
-	define(\"USERNAME_ROOT\", \"".$usernameAdmin."\");
-	define(\"PASSWORD_ROOT\", \"".$passwordHash."\");
-	define(\"COMMENTI_BLOG\", \"".$commentiArticoli."\");
-	define(\"USER_DISQUS\", \"".$userDisqus."\");
-	define(\"URL_SITO\", \"".$urlSito."\");
-	?>
+<?php
+define(\"TITOLO_SITO\", \"".$titoloSito."\");
+define(\"DESCRIZIONE_SITO\", \"".$descrizioneSito."\");
+define(\"KEYWORDS_SITO\", \"".$keywordSito."\");
+define(\"TESTO_FOOTER\", \"".$testoFooter."\");
+define(\"USERNAME_ROOT\", \"".$usernameAdmin."\");
+define(\"PASSWORD_ROOT\", \"".$passwordHash."\");
+define(\"COMMENTI_BLOG\", \"".$commentiArticoli."\");
+define(\"USER_DISQUS\", \"".$userDisqus."\");
+define(\"URL_SITO\", \"".$urlSito."\");
+define(\"FULL_PATH\", \"".getcwd()."/\");
+require_once(\"".getcwd()."/style/theme.php\");
+?>
     ");
 
 }

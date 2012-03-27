@@ -1,35 +1,32 @@
 <?php
 require_once("../config.php");
 require_once("security.php");
-require_once("../style/theme.php");
 adminpageOpen();
 print"
-<center>
-        <form method=\"POST\">
-            <h1>Inserisci Articolo</h1><br/>
-            <br/>
-            Titolo:<br/>
-            <input name=\"titoloArticolo\"><br/>
-            Autore:<br/>
-            <input name=\"autoreArticolo\"><br/>
-            Text:<br/>
-            <br/>
-            <textarea cols=\"110\" rows=\"30\" name=\"testoArticolo\"></textarea><br/>
-            <br/>
-            <input value=\"Inserisci Articolo\" type=\"submit\"><br/>
-        </form>
-    </center>
+<div style=\"text-align: center;\"><h1>
+        Inserisci Articolo</h1>
+    <br>
+    <form method=\"post\" action=\"inserisciArticolo.php\">Titolo:<br>
+        <input name=\"titolo\"><br><br>Autore:<br>
+        <input name=\"autore\"><br><br>Testo:<br>
+        <textarea cols=\"100\" rows=\"20\" name=\"testo\"></textarea><br><br>Tags:<br>
+        <textarea cols=\"40\" rows=\"10\" name=\"tags\"></textarea><br>
+        <br>
+        <input value=\"Inserici Articolo\" type=\"submit\">
+    </form>
+    <br></div>    
 ";
 $idArticolo = date("dmyhms");
-$dataArticolo = date("h:m:s - d/m/y");
-$titoloArticolo = strip_tags($_POST['titoloArticolo']);
-$autoreArticolo = strip_tags($_POST['autoreArticolo']);
-$testoArticolo = htmlentities($_POST['testoArticolo']);
+$titoloArticolo = strip_tags($_POST['titolo']);
+$autoreArticolo = strip_tags($_POST['autore']);
+$testoArticolo = htmlentities($_POST['testo']);
+$tagsArticolo = strip_tags($_POST['tags']);
+$dataArticolo = date("d/m/y - h:m:s");
 $commentiArticolo = htmlentities("
 <div id=\"disqus_thread\"></div>
 <script type=\"text/javascript\">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = '".USER_DISQUS."'; // required: replace example with your forum shortname
+    var disqus_shortname = '" . USER_DISQUS . "'; // required: replace example with your forum shortname
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
@@ -41,18 +38,38 @@ $commentiArticolo = htmlentities("
 <noscript>Please enable JavaScript to view the <a href=\"http://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>
 <a href=\"http://disqus.com\" class=\"dsq-brlink\">blog comments powered by <span class=\"logo-disqus\">Disqus</span></a>
 ");
-if (isset($titoloArticolo) && ($autoreArticolo) && ($testoArticolo))
+if (isset($titoloArticolo) && ($autoreArticolo) && ($testoArticolo) && ($tagsArticolo))
 {
-    $getDb = file_get_contents("../db/articoli.xml");
-    $parseDb = str_replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "", $getDb);
-    $dbParsed = str_replace("<articoliBlog>", "", $parseDb);
-    if (COMMENTI_BLOG == "on")
+    if(COMMENTI_BLOG == TRUE)
     {
-        file_put_contents("../db/articoli.xml", "<?xml version=\"1.0\" encoding=\"UTF-8\"?><articoliBlog><articolo><idArticolo>" . $idArticolo . "</idArticolo><titoloArticolo>" . $titoloArticolo . "</titoloArticolo><autoreArticolo>" . $autoreArticolo . "</autoreArticolo><dataArticolo>" . $dataArticolo . "</dataArticolo><testoArticolo>" . $testoArticolo . "</testoArticolo><commentiArticolo>" . $commentiArticolo . "</commentiArticolo></articolo>" . $dbParsed . "");
+        $articolo['ID'] = $idArticolo;
+        $articolo['titolo'] = $titoloArticolo;
+        $articolo['autore'] = $autoreArticolo;
+        $articolo['testo'] = $testoArticolo;
+        $articolo['tags'] = $tagsArticolo;
+        $articolo['data'] = $dataArticolo;
+        $articolo['commenti'] = $commentiArticolo;
+        $json = json_encode($articolo);
+        file_put_contents("".FULL_PATH."database/articoli/".$idArticolo.".json", $json);
+        $getList = file_get_contents("".FULL_PATH."database/liste/listaArticoli.html");
+        file_put_contents("".FULL_PATH."database/liste/listaArticoli.html", "<ul><li><a href=\"".URL_SITO."blog.php?ID=".$idArticolo."\">[".$dataArticolo."] - $titoloArticolo</a></li></ul>
+                ".$getList."");
+        print"<br><center><h1>ARTICOLO INSERITO CON SUCCESSO!!!</h1></center>";
     }
-    else
+    elseif((COMMENTI_BLOG == FALSE) OR (COMMENTI_BLOG == NULL))
     {
-        file_put_contents("../db/articoli.xml", "<?xml version=\"1.0\" encoding=\"UTF-8\"?><articoliBlog><articolo><idArticolo>" . $idArticolo . "</idArticolo><titoloArticolo>" . $titoloArticolo . "</titoloArticolo><autoreArticolo>" . $autoreArticolo . "</autoreArticolo><dataArticolo>" . $dataArticolo . "</dataArticolo><testoArticolo>" . $testoArticolo . "</testoArticolo></articolo>" . $dbParsed . "");
+        $articolo['ID'] = $idArticolo;
+        $articolo['titolo'] = $titoloArticolo;
+        $articolo['autore'] = $autoreArticolo;
+        $articolo['testo'] = $testoArticolo;
+        $articolo['tags'] = $tagsArticolo;
+        $articolo['data'] = $dataArticolo;
+        $json = json_encode($articolo);
+        file_put_contents("".FULL_PATH."database/articoli/".$idArticolo.".json", $json);
+        $getList = file_get_contents("".FULL_PATH."database/liste/listaArticoli.html");
+        file_put_contents("".FULL_PATH."database/liste/listaArticoli.html", "<ul><li><a href=\"".URL_SITO."blog.php?ID=".$idArticolo."\">[".$dataArticolo."] - $titoloArticolo</a></li></ul>
+                ".$getList."");
+        print"<br><center><h1>ARTICOLO INSERITO CON SUCCESSO!!!</h1></center>";
     }
 }
 adminpageClose();

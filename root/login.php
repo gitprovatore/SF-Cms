@@ -4,16 +4,14 @@ require_once("../style/theme.php");
 adminpageOpen();
 print"
 <h1>SF-CmS Admin Login</h1>
-<p><br>
-</p>
+<br>
 <form method=\"post\" action=\"login.php\">UserName: <input name=\"username\"><br>
 <br>
 Password: <input name=\"password\" type=\"password\"><br>
 <br>
 <br>
 <input value=\"Login\" type=\"submit\"></form>
-<p><br>
-</p>
+<br>
 ";
 $usernameForm = strip_tags($_POST['username']);
 $passwordForm = strip_tags($_POST['password']);
@@ -31,7 +29,7 @@ if(isset($usernameForm) && ($passwordForm))
 	}
 	else
 	{
-		die(print"<h2>YOU FAIL STUPID LAMER!!!</h2>");
+		die(print"<h1>YOU FAIL STUPID LAMER!!!</h1>");
 	}
 }
 adminpageClose();

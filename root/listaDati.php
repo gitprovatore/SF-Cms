@@ -1,19 +1,16 @@
 <?php
 require_once("../config.php");
 require_once("security.php");
-require_once("../style/theme.php");
 adminpageOpen();
-$dbArticoli = simplexml_load_file("../db/articoli.xml");
-$dbPagine = simplexml_load_file("../db/pagine.xml");
-print"<h1>Modifica Articoli</h1><br />";
-foreach ($dbArticoli->articolo as $modArticolo)
-{
-    print"<ul><li><a href=\"modificaArticoli.php?id=" . $modArticolo->idArticolo . "\">Modifica " . $modArticolo->titoloArticolo . "</a></li></ul>";
-}
-print"<br /><h1>Modifica Pagina</h1><br />";
-foreach ($dbPagine->pagina as $modPagina)
-{
-    print"<ul><li><a href=\"modificaPagine.php?id=" . $modPagina->idPagina . "\">Modifica " . $modPagina->nomePagina . "</a></li></ul>";
-}
+$getDBPagine = file_get_contents("".FULL_PATH."database/liste/listaPagine.html");
+$getDBArticoli = file_get_contents("".FULL_PATH."database/liste/listaArticoli.html");
+
+print"<h1>Modifica Articoli</h1><br>";
+$parselist = str_replace("".URL_SITO."", "", $getDBArticoli);
+$listaParsed = str_replace("blog.php", "modificaArticolo.php", $parselist);
+print"".$listaParsed."<br>";
+print"<br><h1>Modifica Pagine</h1><br>";
+print"".$getDBPagine."<br>";
+
 adminpageClose();
 ?>

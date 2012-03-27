@@ -1,85 +1,47 @@
 <?php
 
-function htmlHead()
-{
-	print"
+function htmlHead($titolo, $keywords) {
+    print"
 	<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">
 	<html>
     <head>
     <meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">
-    <title>
-	";
-	print"".TITOLO_SITO."";
-	if (isset($_GET['SEO']))
-	{
-		print" - ".strip_tags($_GET['SEO'])."";
-	}
-	print"
-	</title>
-	<meta name=\"DESCRIPTION\" content=\"".DESCRIZIONE_SITO."\" />
-	<meta name=\"KEYWORDS\" content=\"".KEYWORDS_SITO."";
-	if (isset($_GET['SEO']))
-	{
-<<<<<<< HEAD
-		print", ".strip_tags($_GET['SEO'])."";
-=======
-		$seoKeywords = strip_tags($_GET['SEO']);
-		$keywordsGen = explode(" ", $seoKeywords);
-		foreach($keywordsGen as $key)
-		{
-			print", ".$key."";
-		}
->>>>>>> Nuova versione v3.1 vari miglioramenti e fix :D:D
-	}
-	print"\" />
-    	<link rel=\"stylesheet\" type=\"text/css\" href=\"".URL_SITO."style/style.css\">
+    <title>".TITOLO_SITO." - ".$titolo."</title>
+	<meta name=\"DESCRIPTION\" content=\"" . DESCRIZIONE_SITO . "\" />
+	<meta name=\"KEYWORDS\" content=\"" . KEYWORDS_SITO . ", ".$keywords."\" />
+    	<link rel=\"stylesheet\" type=\"text/css\" href=\"" . URL_SITO . "style/style.css\">
     	</head>
 	";
 }
 
-function htmladminHead()
-{
-	print"
+function htmladminHead() {
+    print"
 	<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">
 	<html>
     <head>
     <meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">
     <title>SF-CmS - Admin Panel</title>
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"".URL_SITO."style/style.css\">
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"" . URL_SITO . "style/style.css\">
     </head>
 	";
 }
 
-function htmlBody()
-{
-	print"<body>";
+function htmlBody() {
+    print"<body>";
 }
 
-function htmlMenu()
-{
-	print"
+function htmlMenu() {
+    print"
 	<div id=\"menu\">
-	<div class=\"element\"><a href=\"".URL_SITO."index.php\">Home</a></div>
-	<div class=\"element\"><a href=\"".URL_SITO."blog.php\">Blog</a></div>
+	<div class=\"element\"><a href=\"" . URL_SITO . "index.php\">Home</a></div>
+	<div class=\"element\"><a href=\"" . URL_SITO . "blog.php\">Blog</a></div>
 	";
-	$loadMenu = simplexml_load_file("db/menu.xml");
-	foreach ($loadMenu->elementoMenu as $menuItem)
-	{
-		if((@preg_match("/http/i", $menuItem->linkElemento)) OR (@preg_match("/https/i", $menuItem->linkElemento)) OR (@preg_match("/ftp/i", $menuItem->linkElemento)) OR (@preg_match("/ftps/i", $menuItem->linkElemento)))
-		{
-			print"<div class=\"element\"><a href=\"".$menuItem->linkElemento."\">".$menuItem->nomeElemento."</a></div>";
-		}
-		else
-		{
-			print"<div class=\"element\"><a href=\"".URL_SITO."pagina.php?pageID=".$menuItem->linkElemento."&SEO=".$menuItem->nomeElemento."\">".$menuItem->nomeElemento."</a></div>";
-		}
-	}
-	print"</div>";
+    $getMenu = file_get_contents("".FULL_PATH."database/liste/menuSito.html");
+    print "".  html_entity_decode(stripslashes($getMenu))."</div>";
 }
 
-function htmladminMenu()
-{
-	print"
+function htmladminMenu() {
+    print"
 	<div id=\"menu\">
 <div class=\"element\"><a href=\"index.php\">ACP Home</a></div>
 <div class=\"element\"><a href=\"inserisciArticolo.php\">Inserisci Articolo</a></div>
@@ -93,81 +55,79 @@ function htmladminMenu()
 	";
 }
 
-function htmlContent()
-{
-	print"<div id=\"body\">";
+function htmlContent() {
+    print"<div id=\"body\">";
 }
 
-function htmlcloseContent()
-{
-	print"</div>";
+function htmlcloseContent() {
+    print"</div>";
 }
 
-function htmlFooter()
-{
-	print"
+function htmlFooter() {
+    print"
 	<div id=\"credits\">
-	".TESTO_FOOTER." - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v3.1</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
+	" . TESTO_FOOTER . " - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v4.0</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
 	</div>
 	";
 }
 
-function htmlcloseBody()
-{
-	print"
+function htmlcloseBody() {
+    print"
 	</body>
 	</html>
 	";
 }
 
-function pageOpen()
-{
-	htmlHead();
-	htmlBody();
-	htmlMenu();
-	htmlContent();
+function pageOpen($titolo, $keywords) {
+    htmlHead($titolo, $keywords);
+    htmlBody();
+    htmlMenu();
+    htmlContent();
 }
 
-function pageClose()
-{
-	htmlcloseContent();
-	htmlFooter();
-	htmlcloseBody();
+function pageClose() {
+    htmlcloseContent();
+    htmlFooter();
+    htmlcloseBody();
 }
 
-function adminpageOpen()
-{
-	htmladminHead();
-	htmlBody();
-	htmladminMenu();
-	htmlContent();
+function adminpageOpen() {
+    htmladminHead();
+    htmlBody();
+    htmladminMenu();
+    htmlContent();
 }
 
-function adminpageClose()
-{
-	htmlcloseContent();
-	htmlFooter();
-	htmlcloseBody();
+function adminpageClose() {
+    htmlcloseContent();
+    htmlFooter();
+    htmlcloseBody();
 }
 
-function viewPage($pageText)
-{
-	print"<br>".html_entity_decode($pageText)."<br>";
+function viewPage($pageName, $pageText) {
+    print"<h1>" . $pageName . "</h1><br>" . html_entity_decode(stripslashes($pageText)) . "<br>";
 }
 
-function viewArticlelist($id, $title, $date)
+function viewArticlelist()
 {
-	print"<ul><li><a href=\"blog.php?articleID=".$id."&SEO=".$title."\">[".$date."] - ".$title."</a></li></ul>";
+    $getList = file_get_contents("".FULL_PATH."database/liste/listaArticoli.html");
+    print html_entity_decode(stripslashes($getList));
 }
 
-function viewArticle($title, $text, $author, $data, $comment)
-{
-	print"
-	<h1>".$title."</h1>
-	".html_entity_decode($text)."<br><br>
-	<strong>Autore:</strong>".$author."&nbsp;&nbsp;<strong>Data:</strong>".$data."<br><br>
-	<strong>Commenti:</strong><br>
-	".html_entity_decode($comment)."
-	";
+function viewArticleandComments($title, $text, $author, $data, $comment) {
+        print"
+	<h1>" . $title . "</h1>
+	" . html_entity_decode(stripslashes($text)) . "<br><br>
+	<strong>Autore:</strong>" . $author . "&nbsp;&nbsp;<strong>Data:</strong>" . $data . "<br><br>
+	<strong>Commenti:</strong><br><br>
+	" . html_entity_decode($comment) . "";
 }
+function viewArticle($title, $text, $author, $data)
+{
+     print"
+	<h1>" . $title . "</h1>
+	" . html_entity_decode(stripslashes($text)) . "<br><br>
+	<strong>Autore:</strong>" . $author . "&nbsp;&nbsp;<strong>Data:</strong>" . $data . "<br>";
+}
+
 ?>

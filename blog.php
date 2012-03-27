@@ -1,26 +1,36 @@
 <?php
-require_once("style/theme.php");
 require_once("config.php");
-pageOpen();
-$articleID = strip_tags($_GET['articleID']);
-if (empty($_GET['articleID']))
+if(!empty($_GET['ID']))
 {
-    $getDb = simplexml_load_file("db/articoli.xml");
-    foreach ($getDb->articolo as $article)
+    if(file_exists("".FULL_PATH."database/articoli/".$_GET['ID'].".json"))
     {
-        viewArticlelist($article->idArticolo, $article->titoloArticolo, $article->dataArticolo);
+        $ID = strip_tags($_GET['ID']);
+        $getArticolo = file_get_contents("".FULL_PATH."database/articoli/".$ID.".json");
+        $jsondecode = json_decode($getArticolo);
+    if(COMMENTI_BLOG == TRUE)
+    {
+        pageOpen($jsondecode->titolo, $jsondecode->tags);
+        viewArticleandComments($jsondecode->titolo, $jsondecode->testo, $jsondecode->autore, $jsondecode->data, $jsondecode->commenti);
+        pageClose();
+    }
+    elseif((COMMENTI_BLOG == FALSE) OR (COMMENTI_BLOG == NULL))
+    {
+        pageOpen($jsondecode->titolo, $jsondecode->tags);
+        viewArticle($jsondecode->titolo, $jsondecode->testo, $jsondecode->autore, $jsondecode->data);
+        pageClose();
+    }
+    }
+    else
+    {
+        pageOpen("ARTICOLO NON ESISTENTE", "ARTICOLO NON ESISTENTE");
+        print"<center><h1>L' ARTICOLO NON ESISTE!!!</h1></center>";
+        pageClose();
     }
 }
 else
 {
-    $getDb = simplexml_load_file("db/articoli.xml");
-    foreach ($getDb->articolo as $article)
-    {
-        if ($articleID == $article->idArticolo)
-        {
-			viewArticle($article->titoloArticolo, $article->testoArticolo, $article->autoreArticolo, $article->dataArticolo, $article->commentiArticolo);
-        }
-    }
+    pageOpen("Blog", "Blog");
+    viewArticlelist();
+    pageClose(); 
 }
-pageClose();
 ?>

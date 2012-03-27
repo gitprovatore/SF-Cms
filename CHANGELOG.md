@@ -39,3 +39,15 @@
 - Miglioramento nel sistema di gestione dello stile.
 - Migliorato sistema delle keywords per gli articoli e le pagine.
 - Vari Fix.
+
+----------
+
+**SF-Cms v4.0 STABLE (27 Maggio 2012)**
+
+- CMS totalmente riscritto.
+- Uso di file JSON e HTML come database.
+- Migliorate tutte le funzioni.
+- Fixati bug per l' inserimento di caratteri speciali negli articoli.
+- Fixato bug della modifica del menu.
+- Migliorato sistema di visualizzazione di articoli e pagine.
+- Aumentata la sicurezza.
