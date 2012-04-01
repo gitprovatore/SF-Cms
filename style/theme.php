@@ -66,7 +66,7 @@ function htmlcloseContent() {
 function htmlFooter() {
     print"
 	<div id=\"credits\">
-	" . TESTO_FOOTER . " - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v4.0</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
+	" . html_entity_decode(stripslashes(TESTO_FOOTER)) . " - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v4.0</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
 	</div>
 	";
 }
@@ -105,7 +105,7 @@ function adminpageClose() {
 }
 
 function viewPage($pageName, $pageText) {
-    print"<h1>" . $pageName . "</h1><br>" . html_entity_decode(stripslashes($pageText)) . "<br>";
+    print"<h1>" . stripslashes($pageName) . "</h1><br>" . html_entity_decode(stripslashes($pageText)) . "<br>";
 }
 
 function viewArticlelist()
