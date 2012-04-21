@@ -36,8 +36,20 @@ function htmlMenu() {
 	<div class=\"element\"><a href=\"" . URL_SITO . "index.php\">Home</a></div>
 	<div class=\"element\"><a href=\"" . URL_SITO . "blog.php\">Blog</a></div>
 	";
-    $getMenu = file_get_contents("".FULL_PATH."database/liste/menuSito.html");
-    print "".  html_entity_decode(stripslashes($getMenu))."</div>";
+	$getMenu = file_get_contents("".FULL_PATH."database/liste/menuSito.json");
+    $decodeMenu = json_decode($getMenu);
+    foreach($decodeMenu as $elementoLista)
+    {
+		if((!@preg_match("http", $elementoLista)) OR (!@preg_match("https", $elementoLista)) OR (!@preg_match("ftp", $elementoLista)) OR (!@preg_match("ftps", $elementoLista)))
+		{
+			print "<div class=\"element\"><a href=\"".URL_SITO."pagina.php?ID=".$elementoLista->link."\">".$elementoLista->nome."</a></div>";
+		}
+		else
+		{
+			print "<div class=\"element\"><a href=\"".$elementoLista->link."\">".$elementoLista->nome."</a></div>";
+		}
+	}
+	print"</div>";
 }
 
 function htmladminMenu() {
@@ -66,7 +78,11 @@ function htmlcloseContent() {
 function htmlFooter() {
     print"
 	<div id=\"credits\">
+<<<<<<< HEAD
 	" . html_entity_decode(stripslashes(TESTO_FOOTER)) . " - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v4.0</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
+=======
+	" . html_entity_decode(stripslashes(TESTO_FOOTER)) . " - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v4.1</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
+>>>>>>> Nuova versione 4.1 :D :D tante novità
 	</div>
 	";
 }
@@ -110,8 +126,12 @@ function viewPage($pageName, $pageText) {
 
 function viewArticlelist()
 {
-    $getList = file_get_contents("".FULL_PATH."database/liste/listaArticoli.html");
-    print html_entity_decode(stripslashes($getList));
+    $getList = file_get_contents("".FULL_PATH."database/liste/listaArticoli.json");
+    $decodeList = array_reverse(json_decode($getList));
+    foreach($decodeList as $elementoLista)
+    {
+		print"<ul><li><a href=\"".URL_SITO."blog.php?ID=".$elementoLista->ID."\">[".$elementoLista->data."] - ".$elementoLista->titolo."</a></li></ul>";
+	}    
 }
 
 function viewArticleandComments($title, $text, $author, $data, $comment) {

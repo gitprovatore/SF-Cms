@@ -34,10 +34,18 @@ if (isset($nomePagina) && ($testoPagina) && ($tagsPagina))
     $pagina['tags'] = $tagsPagina;
     $json = json_encode($pagina);
     file_put_contents("".FULL_PATH."database/pagine/".$idPagina.".json", $json);
-    file_put_contents("".FULL_PATH."database/liste/listaPagine.html", "
-        <ul><li><a href=\"modificaPagina.php?ID=".$idPagina."\">".$nomePagina."</a></li></ul>", FILE_APPEND);
-    file_put_contents("".FULL_PATH."database/liste/menuSito.html", "
-        <div class=\"element\"><a href=\"".URL_SITO."pagina.php?ID=".$idPagina."\">".$nomePagina."</a></div>", FILE_APPEND);
+    $getList = file_get_contents("".FULL_PATH."database/liste/listaPagine.json");
+    $decodeList = json_decode($getList);
+    $arrayList = array("ID" => $idPagina, "nome" => $nomePagina);
+    array_push($decodeList, $arrayList);
+    $encodeList = json_encode($decodeList);
+    file_put_contents("".FULL_PATH."database/liste/listaPagine.json", $encodeList);
+    $getList = file_get_contents("".FULL_PATH."database/liste/menuSito.json");
+    $decodeList = json_decode($getList);
+    $arrayList = array("link" => $idPagina, "nome" => $nomePagina);
+    array_push($decodeList, $arrayList);
+    $encodeList = json_encode($decodeList);
+    file_put_contents("".FULL_PATH."database/liste/menuSito.json", $encodeList);
     print"<br><center><h1>PAGINA INSERITA CON SUCCESSO!!!</h1></center>";
 }
 adminpageClose();

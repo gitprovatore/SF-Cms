@@ -19,7 +19,7 @@ print"
         Titolo:<br>
         <input name=\"titolo\" value=\"".$jsondecode->titolo."\"><br><br>Autore:<br>
         <input name=\"autore\" value=\"".$jsondecode->autore."\"><br><br>Testo:<br>
-        <textarea cols=\"100\" rows=\"20\" name=\"testo\">".$jsondecode->testo."</textarea><br><br>Tags:<br>
+        <textarea cols=\"100\" rows=\"20\" name=\"testo\">".html_entity_decode($jsondecode->testo)."</textarea><br><br>Tags:<br>
         <textarea cols=\"40\" rows=\"10\" name=\"tags\">".$jsondecode->tags."</textarea><br>
         <br>
         <input value=\"Modifica Articolo\" type=\"submit\">
@@ -34,7 +34,6 @@ $autore = strip_tags($_GET['autore']);
 $testo = htmlentities($_GET['testo']);
 $tags = strip_tags($_GET['tags']);
 $data = strip_tags($_GET['data']);
-$commenti = htmlentities($_GET['commenti']);
 if(isset($ID) && ($titolo) && ($autore) && ($testo) && ($tags) && ($oldtitolo))
 {
     $articolo['ID'] = $ID;
@@ -43,12 +42,11 @@ if(isset($ID) && ($titolo) && ($autore) && ($testo) && ($tags) && ($oldtitolo))
     $articolo['testo'] = $testo;
     $articolo['tags'] = $tags;
     $articolo['data'] = $data;
-    $articolo['commenti'] = $commenti;
     $jsonencode = json_encode($articolo);
     file_put_contents("".FULL_PATH."database/articoli/".$ID.".json", $jsonencode);
-    $getList = file_get_contents("".FULL_PATH."database/liste/listaArticoli.html");
+    $getList = file_get_contents("".FULL_PATH."database/liste/listaArticoli.json");
     $parseList = str_replace($oldtitolo, $titolo, $getList);
-    file_put_contents("".FULL_PATH."database/liste/listaArticoli.html", $parseList);
+    file_put_contents("".FULL_PATH."database/liste/listaArticoli.json", $parseList);
     print"<br><center><h1>ARTICOLO MODIFICATO CON SUCCESSO!!!</h1></center>";
 }
 adminpageClose();

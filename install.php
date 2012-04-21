@@ -30,7 +30,7 @@ Admin Password: <input name=\"adminpass\" type=\"password\"><br>
 Conferma Password: <input name=\"adminpassc\" type=\"password\"><br>
 <br>
 Commenti:&nbsp;<input name=\"commenti\">
-&nbsp;Inserire on per abilitarli oppure off per disabilitarli
+&nbsp;Inserire TRUE per abilitarli oppure FALSE per disabilitarli
 (attenzione inserire on/off a caratteri minuscoli).<br>
 <br>
 Disqus ShortName:&nbsp;<input name=\"shortname\"> Se

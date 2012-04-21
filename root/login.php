@@ -1,6 +1,5 @@
 <?php
 require_once("../config.php");
-require_once("../style/theme.php");
 adminpageOpen();
 print"
 <h1>SF-CmS Admin Login</h1>

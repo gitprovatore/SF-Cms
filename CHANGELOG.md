@@ -51,3 +51,11 @@
 - Fixato bug della modifica del menu.
 - Migliorato sistema di visualizzazione di articoli e pagine.
 - Aumentata la sicurezza.
+
+----------
+
+**SF-Cms v4.1 STABLE (27 Maggio 2012)**
+
+- Migliorato il sistema di database ed era ora :D :D, ora interamente basato su json.
+- Migliorato sistema del template ora tutta la grafica è modificabile tramite il file style/theme.php e naturalmente il foglio css.
+- Fatti alcuni fix al codice.

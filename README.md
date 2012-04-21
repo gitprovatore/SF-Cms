@@ -23,9 +23,12 @@ Le caratteristiche di SF-CmS sono:
 
 ## Informazioni sul funzionamento del menu ##
 
-Il menu è scritto sul file ./database/liste/menuSito.html e contiene i link alle pagine che avete creato però se voi volete aggiungere un link ad una pagina o ad un sito potete farlo basta scrivere il link fra il div che si chiama "element" ad esempio:
+Il menu è scritto sul file ./database/liste/menuSito.json e contiene i link alle pagine che avete creato però se voi volete aggiungere un link ad una pagina o ad un sito potete farlo basta scrivere il link così:
 
-`<div class="element"><a href="http://ww.sito.it/">nomelink</a></div>`
+`[{"link":"http:/link già presente.it/", "nome":"un link già nel menu"}, {"link":"http:/link.it/", "nome":"link al sito link.it"}]`  
+
+Non dimenticate http, https etc.. perche se li dimenticate il link verrà visto come un id di una pagina.  
+E ricordate sempre di separare con una virgola gli elementi tra le parentesi graffe e quadre :).  
 
 Per modificare l' aspetto del cms dovete modificare i file:
 
