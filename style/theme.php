@@ -1,5 +1,7 @@
 <?php
 
+require_once("textformat.php");
+
 function htmlHead($titolo, $keywords) {
     print"
 	<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">
@@ -61,7 +63,6 @@ function htmladminMenu() {
 <div class=\"element\"><a href=\"listaDati.php\">Modifica Articolo/Pagina</a></div>
 <div class=\"element\"><a href=\"modificaHome.php\">Modifica HomePage</a></div>
 <div class=\"element\"><a href=\"modificaMenu.php\">Modifica Menu</a></div>
-<div class=\"element\"><a href=\"modificaImpostazioni.php\">Modifica Impostazioni</a></div>
 <div class=\"element\"><a href=\"logout.php\">Logout</a></div>
 	</div>
 	";
@@ -78,11 +79,7 @@ function htmlcloseContent() {
 function htmlFooter() {
     print"
 	<div id=\"credits\">
-<<<<<<< HEAD
-	" . html_entity_decode(stripslashes(TESTO_FOOTER)) . " - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v4.0</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
-=======
-	" . html_entity_decode(stripslashes(TESTO_FOOTER)) . " - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v4.1</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
->>>>>>> Nuova versione 4.1 :D :D tante novità
+	" . formatText(TESTO_FOOTER) . " - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v4.1</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
 	</div>
 	";
 }
@@ -121,7 +118,7 @@ function adminpageClose() {
 }
 
 function viewPage($pageName, $pageText) {
-    print"<h1>" . stripslashes($pageName) . "</h1><br>" . html_entity_decode(stripslashes($pageText)) . "<br>";
+    print"<h1>" . formatText($pageName) . "</h1><br>" . formatText($pageText) . "<br>";
 }
 
 function viewArticlelist()
@@ -137,16 +134,16 @@ function viewArticlelist()
 function viewArticleandComments($title, $text, $author, $data, $comment) {
         print"
 	<h1>" . $title . "</h1>
-	" . html_entity_decode(stripslashes($text)) . "<br><br>
+	" . formatText($text) . "<br><br>
 	<strong>Autore:</strong>" . $author . "&nbsp;&nbsp;<strong>Data:</strong>" . $data . "<br><br>
 	<strong>Commenti:</strong><br><br>
-	" . html_entity_decode($comment) . "";
+	" . formatText($comment) . "";
 }
 function viewArticle($title, $text, $author, $data)
 {
      print"
 	<h1>" . $title . "</h1>
-	" . html_entity_decode(stripslashes($text)) . "<br><br>
+	" . formatText($text) . "<br><br>
 	<strong>Autore:</strong>" . $author . "&nbsp;&nbsp;<strong>Data:</strong>" . $data . "<br>";
 }
 

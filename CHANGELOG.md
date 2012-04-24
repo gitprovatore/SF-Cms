@@ -42,7 +42,7 @@
 
 ----------
 
-**SF-Cms v4.0 STABLE (27 Maggio 2012)**
+**SF-Cms v4.0 STABLE (27 Marzo 2012)**
 
 - CMS totalmente riscritto.
 - Uso di file JSON e HTML come database.
@@ -54,8 +54,16 @@
 
 ----------
 
-**SF-Cms v4.1 STABLE (27 Maggio 2012)**
+**SF-Cms v4.1 STABLE (27 Marzo 2012)**
 
 - Migliorato il sistema di database ed era ora :D :D, ora interamente basato su json.
 - Migliorato sistema del template ora tutta la grafica è modificabile tramite il file style/theme.php e naturalmente il foglio css.
 - Fatti alcuni fix al codice.
+
+----------
+
+**SF-Cms v5.0 STABLE (24 Aprile 2012)**
+
+- Rimosso installer grafico e possibilità di modificare le impostazioni dal pannello admin.
+- Aggiunti BBCODE e MARKDOWN per formattare il testo.
+- Aggiunto login più sicuro con notifica email.

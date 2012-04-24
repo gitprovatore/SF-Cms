@@ -21,7 +21,7 @@ if(!empty($_GET['ID']))
 {
     if(file_exists("".FULL_PATH."database/articoli/".$_GET['ID'].".json"))
     {
-        $ID = strip_tags($_GET['ID']);
+        $ID = strip_tags((double)$_GET['ID']);
         $getArticolo = file_get_contents("".FULL_PATH."database/articoli/".$ID.".json");
         $jsondecode = json_decode($getArticolo);
     if(COMMENTI_BLOG == TRUE)

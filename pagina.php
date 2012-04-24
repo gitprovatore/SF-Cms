@@ -4,7 +4,7 @@ if(!empty($_GET['ID']))
 {
     if(file_exists("".FULL_PATH."database/pagine/".$_GET['ID'].".json"))
     {
-        $ID = strip_tags($_GET['ID']);
+        $ID = strip_tags((double)$_GET['ID']);
         $getPagina = file_get_contents("".FULL_PATH."database/pagine/".$ID.".json");
         $jsondecode = json_decode($getPagina);
         pageOpen($jsondecode->nome, $jsondecode->tags);

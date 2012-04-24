@@ -10,15 +10,15 @@ Le caratteristiche di SF-CmS sono:
 - Possibilità di inserire e modificare pagine.
 - Possibilità di modificare il menu.
 - Possibilità di la home page.
-- Possibilità di modificare le impostazioni del sito.
 
 ## Installazione e Configurazione: ##
 
-- Come prima cosa caricate tutti i file di SF-CmS nel vostro spazio web.
+- Come prima cosa aprite il file config.php e configuratelo seguendo le istruzione dei commenti.
+- Caricate tutti i file di SF-CmS nel vostro spazio web.
 - Fate il chmod di tutti i file a 777.
-- Aprite il file install.php e compilate tutti i campi.
+- Aprite il file install.php e inserite username, password e la conferma della password.
 - Eliminate il file install.php
-- Fate il chmod del file config.php 664.
+- Fate il chmod dei file config.php e loginconfig.php a 664.
 - Andate nel pannello admin che si trova nella cartella root, quindi www.vostrosito.it/root/ e potete cominciare a modificare la home page e a scrivere articoli e inserire pagine.
 
 ## Informazioni sul funzionamento del menu ##
