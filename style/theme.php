@@ -137,7 +137,7 @@ function viewArticleandComments($title, $text, $author, $data, $comment) {
 	" . formatText($text) . "<br><br>
 	<strong>Autore:</strong>" . $author . "&nbsp;&nbsp;<strong>Data:</strong>" . $data . "<br><br>
 	<strong>Commenti:</strong><br><br>
-	" . formatText($comment) . "";
+	" . html_entity_decode(stripslashes($comment)) . "";
 }
 function viewArticle($title, $text, $author, $data)
 {

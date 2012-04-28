@@ -5,14 +5,8 @@ function formatText($textString)
 	if(TEXT_FORMAT == "HTML")
 	{
 		html_entity_decode(stripslashes($textString));
-		if(function_exists("wordFilter"))
-		{
-			$textString = wordFilter($textString);
-		}
-		else
-		{
-			return $textString;
-		}
+		return $textString;
+
 	}
 	elseif(TEXT_FORMAT == "BBCODE")
 	{
@@ -43,16 +37,9 @@ function formatText($textString)
 		$textString = str_replace("[/code]", "</code>", $textString);
 		$textString = str_replace("[img]", "<img src=\"", $textString);
 		$textString = str_replace("[/img]", "\">", $textString);
-		$textString = preg_replace ("/\\[url\\](.*?)\\[\\/url\\]/is", "<a target=\"_blank\" href=\"$1\">$1</a>", $textString); // code by KinG-InFeT
-		$textString = preg_replace ("/\\[youtube\\](.*?)\\[\\/youtube\\]/is", "<br /><iframe title=\"YouTube video player\" width=\"480\" height=\"390\" src=\"http://www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>", $textString); // code by KinG-InFeT
-		if(function_exists("wordFilter"))
-		{
-			$textString = wordFilter($textString);
-		}
-		else
-		{
-			return $textString;
-		}
+		$textString = preg_replace ("/\[url\=\"(.*?)\"\](.*?)\[\/url\]/is", "<a href=\"$1\">$2</a>", $textString);
+		$textString = preg_replace ("/\[youtube\](.*?)\[\/youtube\]/is", "<br /><iframe title=\"YouTube video player\" width=\"480\" height=\"390\" src=\"http://www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>", $textString); // code by KinG-InFeT
+		return $textString;
 	}
 	elseif(TEXT_FORMAT == "MARKDOWN")
 	{
@@ -71,14 +58,7 @@ function formatText($textString)
 		$textString = preg_replace ("/\'(.*?)'/is", "<code>$1</code>", $textString);
 		$textString = preg_replace ("/\[(.*?)\]\((.*?)\)/is", "<a href=\"$2\">$1</a>", $textString);
 		$textString = preg_replace ("/\- (.*?)\*/is", "<ul><li>$1</li></ul>", $textString);
-		if(function_exists("wordFilter"))
-		{
-			$textString = wordFilter($textString);
-		}
-		else
-		{
-			return $textString;
-		}
+		return $textString;
 	}
 	else
 	{

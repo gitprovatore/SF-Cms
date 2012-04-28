@@ -13,23 +13,27 @@ function sendMail($mode)
 		$mailHeader = "From: mittente<".ADMIN_EMAIL.">\nReply-to: ".ADMIN_EMAIL."";
 		@mail($admin_email , "SF-CmS Mailer Info", "E' stato effettuato un login al pannello admin di SF-CmS dall IP: ".$_SERVER['REMOTE_ADDR']." alle ".date("h:m:s")." del ".date("d/m/y")."", $mailHeader);
 	}
+	else
+	{
+		die();
+	}
 }
 
 if(SECURE_LOGIN == TRUE)
 {
 	if((IP != NULL) && (IP != $_SERVER['REMOTE_ADDR']))
 	{
-		sendMail();
+		sendMail("ALERT");
 		die(print"<h1>YOU FAIL STUPID LAMER!!!</h1>");
 	}
-	if(!preg_match(BROWSER, $_SERVER['HTTP_USER_AGENT']))
+	if(!preg_match("/".BROWSER."/i", $_SERVER['HTTP_USER_AGENT']))
 	{
-		sendMail();
+		sendMail("ALERT");
 		die(print"<h1>YOU FAIL STUPID LAMER!!!</h1>");
 	}
-	if(!preg_match(OS, $_SERVER['HTTP_USER_AGENT']))
+	if(!preg_match("/".OS."/i", $_SERVER['HTTP_USER_AGENT']))
 	{
-		sendMail();
+		sendMail("ALERT");
 		die(print"<h1>YOU FAIL STUPID LAMER!!!</h1>");
 	}
 
