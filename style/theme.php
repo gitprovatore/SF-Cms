@@ -118,7 +118,7 @@ function adminpageClose() {
 }
 
 function viewPage($pageName, $pageText) {
-    print"<h1>" . formatText($pageName) . "</h1><br>" . formatText($pageText) . "<br>";
+    print"<h1>" . $pageName . "</h1><br>" . formatText(html_entity_decode(stripslashes($pageText))) . "<br>";
 }
 
 function viewArticlelist()
@@ -134,16 +134,16 @@ function viewArticlelist()
 function viewArticleandComments($title, $text, $author, $data, $comment) {
         print"
 	<h1>" . $title . "</h1>
-	" . formatText($text) . "<br><br>
+	" . formatText(html_entity_decode(stripslashes($text))) . "<br><br>
 	<strong>Autore:</strong>" . $author . "&nbsp;&nbsp;<strong>Data:</strong>" . $data . "<br><br>
 	<strong>Commenti:</strong><br><br>
-	" . html_entity_decode(stripslashes($comment)) . "";
+	" . formatText(html_entity_decode(stripslashes($comment))) . "";
 }
 function viewArticle($title, $text, $author, $data)
 {
      print"
 	<h1>" . $title . "</h1>
-	" . formatText($text) . "<br><br>
+	" . formatText(html_entity_decode(stripslashes($text))) . "<br><br>
 	<strong>Autore:</strong>" . $author . "&nbsp;&nbsp;<strong>Data:</strong>" . $data . "<br>";
 }
 

@@ -4,13 +4,13 @@ function formatText($textString)
 {
 	if(TEXT_FORMAT == "HTML")
 	{
-		html_entity_decode(stripslashes($textString));
+		$textString = stripslashes(html_entity_decode($textString));
 		return $textString;
 
 	}
 	elseif(TEXT_FORMAT == "BBCODE")
 	{
-		$textString = html_entity_decode(stripslashes($textString));
+		$textString = stripslashes(html_entity_decode($textString));
 		$textString = str_replace("[h1]", "<h1>", $textString);
 		$textString = str_replace("[/h1]", "</h1>", $textString);
 		$textString = str_replace("[h2]", "<h2>", $textString);
@@ -43,7 +43,7 @@ function formatText($textString)
 	}
 	elseif(TEXT_FORMAT == "MARKDOWN")
 	{
-		$textString = html_entity_decode(stripslashes($textString));
+		$textString = stripslashes(html_entity_decode($textString));
 		$textString = preg_replace ("/#(.*?)#/is", "<h1>$1</h1>", $textString);
 		$textString = preg_replace ("/##(.*?)##/is", "<h2>$1</h2>", $textString);
 		$textString = preg_replace ("/###(.*?)###/is", "<h3>$1</h3>", $textString);
