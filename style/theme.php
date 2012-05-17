@@ -4,27 +4,27 @@ require_once("textformat.php");
 
 function htmlHead($titolo, $keywords) {
     print"
-	<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">
-	<html>
-    <head>
-    <meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">
-    <title>".TITOLO_SITO." - ".$titolo."</title>
-	<meta name=\"DESCRIPTION\" content=\"" . DESCRIZIONE_SITO . "\" />
-	<meta name=\"KEYWORDS\" content=\"" . KEYWORDS_SITO . ", ".$keywords."\" />
-    	<link rel=\"stylesheet\" type=\"text/css\" href=\"" . URL_SITO . "style/style.css\">
-    	</head>
+	<!DOCTYPE html>
+	<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"it\">
+	<head>
+	<title>".TITOLO_SITO." - ".$titolo."</title>
+	<meta name=\"description\" content=\"" . DESCRIZIONE_SITO . "\" />
+	<meta name=\"keywords\" content=\"" . KEYWORDS_SITO . ", ".$keywords."\" />
+	<meta charset=\"UTF-8\" />
+	<link rel=\"stylesheet\" type=\"text/css\" href=\"" . URL_SITO . "style/style.css\">
+	</head>
 	";
 }
 
 function htmladminHead() {
     print"
-	<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">
-	<html>
-    <head>
-    <meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">
-    <title>SF-CmS - Admin Panel</title>
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"" . URL_SITO . "style/style.css\">
-    </head>
+	<!DOCTYPE html>
+	<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"it\">
+	<head>
+	<meta charset=\"UTF-8\" />
+	<title>SF-CmS - Admin Panel</title>
+	<link rel=\"stylesheet\" type=\"text/css\" href=\"" . URL_SITO . "style/style.css\">
+	</head>
 	";
 }
 
@@ -79,7 +79,7 @@ function htmlcloseContent() {
 function htmlFooter() {
     print"
 	<div id=\"credits\">
-	" . formatText(TESTO_FOOTER) . " - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v4.1</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
+	" . stripslashes(html_entity_decode(TESTO_FOOTER)) . " - <a href=\"http://system-infet.webnet32.com/\">PoWeReD By SF-CmS v5.0</a> - <a href=\"http://meh.paranoid.pk\">Meh CSS Style</a>
 	</div>
 	";
 }
@@ -118,7 +118,7 @@ function adminpageClose() {
 }
 
 function viewPage($pageName, $pageText) {
-    print"<h1>" . $pageName . "</h1><br>" . formatText(html_entity_decode(stripslashes($pageText))) . "<br>";
+    print"<h1>" . formatText(stripslashes(html_entity_decode($pageName))) . "</h1>" . formatText(stripslashes(html_entity_decode($pageText))) . "<br />";
 }
 
 function viewArticlelist()
@@ -133,18 +133,39 @@ function viewArticlelist()
 
 function viewArticleandComments($title, $text, $author, $data, $comment) {
         print"
-	<h1>" . $title . "</h1>
-	" . formatText(html_entity_decode(stripslashes($text))) . "<br><br>
-	<strong>Autore:</strong>" . $author . "&nbsp;&nbsp;<strong>Data:</strong>" . $data . "<br><br>
-	<strong>Commenti:</strong><br><br>
-	" . formatText(html_entity_decode(stripslashes($comment))) . "";
+<div class=\"blog\">
+            
+        <div class=\"page\">
+<div id=\"39\" class=\"post\">
+            <div class=\"header\">
+                <span class=\"title\"><a href=\"".URL_SITO."blog.php?ID=".strip_tags($_GET['ID'])."\">".formatText(stripslashes(html_entity_decode($title)))."</a></span> <div style=\"float: right\"></div>
+            </div>
+            <div class=\"content\">".formatText(stripslashes(html_entity_decode($text)))."</div>
+            <div class=\"by\">Scritto da <span class=\"author\">".formatText(stripslashes(html_entity_decode($author)))."</span> il <span class=\"date\">".formatText(stripslashes(html_entity_decode($data)))."</span></div>
+
+            
+
+            </div></div>
+        </div>
+".stripslashes(html_entity_decode($comment))."";
 }
 function viewArticle($title, $text, $author, $data)
 {
-     print"
-	<h1>" . $title . "</h1>
-	" . formatText(html_entity_decode(stripslashes($text))) . "<br><br>
-	<strong>Autore:</strong>" . $author . "&nbsp;&nbsp;<strong>Data:</strong>" . $data . "<br>";
+        print"
+<div class=\"blog\">
+            
+        <div class=\"page\">
+<div id=\"39\" class=\"post\">
+            <div class=\"header\">
+                <span class=\"title\"><a href=\"".URL_SITO."blog.php?ID=".strip_tags($_GET['ID'])."\">".formatText(stripslashes(html_entity_decode($title)))."</a></span> <div style=\"float: right\"></div>
+            </div>
+            <div class=\"content\">".formatText(stripslashes(html_entity_decode($text)))."</div>
+            <div class=\"by\">Scritto da <span class=\"author\">".formatText(stripslashes(html_entity_decode($author)))."</span> il <span class=\"date\">".formatText(stripslashes(html_entity_decode($data)))."</span></div>
+
+            
+
+            </div></div>
+        </div>";
 }
 
 ?>
